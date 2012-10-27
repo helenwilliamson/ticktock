@@ -5,13 +5,15 @@ public class PickupSpawner : MonoBehaviour {
 	
 	public Transform collectiblePrefab;
 	public int numberOfCollectibles;
+	public Vector3 startingPosition;
 	
 	void Start() {
+		
 		var amountToAdd = 360f / numberOfCollectibles;
-		var startingPosition = transform.localPosition;
-		startingPosition.x = -0.006980963f;
-		startingPosition.y = 1f;
-		startingPosition.z = 0.3999391f;
+		var initialPosition = transform.localPosition;
+		initialPosition.x = startingPosition.x;
+		initialPosition.y = startingPosition.y;
+		initialPosition.z = startingPosition.z;
 		
 		for (int i = 1; i < numberOfCollectibles; i++) {
 			Transform collectible = (Transform)Instantiate(collectiblePrefab);
