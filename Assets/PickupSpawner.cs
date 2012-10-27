@@ -22,7 +22,7 @@ public class PickupSpawner : MonoBehaviour {
 			
 			var scale = collectible.localScale;
 			scale.x = 0.05f;
-			scale.y = 0.05f;
+			scale.y = 2.5f;
 			scale.z = 0.05f;
 			collectible.localScale = scale;
 			
