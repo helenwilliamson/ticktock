@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CollectibleSpawner : MonoBehaviour {
+public class PickupSpawner : MonoBehaviour {
 	
 	public Transform collectiblePrefab;
 	public int numberOfCollectibles;
