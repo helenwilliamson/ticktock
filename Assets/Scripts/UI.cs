@@ -3,13 +3,16 @@ using System.Collections;
 
 public class UI : MonoBehaviour {
 	
-	public Texture2D introBackground;
+	public Texture2D introScreen;
 	public bool showIntro;
+	public Texture2D finishScreen;
+	public bool finished;
+	
 	public int numberCollected = 0;
 
 	void OnGUI () {
 		if (showIntro) {
-			GUI.Label(new Rect(50, 0,900,900), introBackground);
+			GUI.Label(new Rect(50, 0,900,900), introScreen);
 		
 			if (Event.current.type == EventType.KeyDown) {
         		showIntro = false;
@@ -18,6 +21,10 @@ public class UI : MonoBehaviour {
 		
 		if (!showIntro) {
 			updateUI();	
+		}
+		
+		if (finished) {
+			GUI.Label(new Rect(50, 0, 900, 900), finishScreen);	
 		}
 	}
 	
