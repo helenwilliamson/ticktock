@@ -18,8 +18,7 @@ public class CharacterCollision : MonoBehaviour {
 	void handlePickup(GameObject gameObject) {
 		Destroy(gameObject);
 		
-		var component = ui.GetComponent<UI>();
-		component.numberCollected += 1;
+		getUIScript().numberCollected += 1;
 	}
 	
 	void handleObstacle() {
@@ -27,6 +26,17 @@ public class CharacterCollision : MonoBehaviour {
 		foreach(CogAnimator cogAnimator in cogAnimators) {
 			cogAnimator.stopped = true;
 		}
+		
+		StartCoroutine(showFinishScreen());
+	}
+	
+	IEnumerator showFinishScreen() {
+		yield return new WaitForSeconds(5);
+		getUIScript().finished = true;
+	}
+	
+	private UI getUIScript() {
+		return ui.GetComponent<UI>();	
 	}
 	
 }
