@@ -6,6 +6,7 @@ public class PickupSpawner : MonoBehaviour {
 	public Transform collectiblePrefab;
 	public int numberOfCollectibles;
 	public Vector3 startingPosition;
+	public float scale;
 	
 	void Start() {
 		
@@ -19,12 +20,7 @@ public class PickupSpawner : MonoBehaviour {
 			Transform collectible = (Transform)Instantiate(collectiblePrefab);
 			collectible.transform.parent = gameObject.transform;
 			collectible.localPosition = startingPosition;
-			
-			var scale = collectible.localScale;
-			scale.x = 0.05f;
-			scale.y = 0.1f;
-			scale.z = 0.05f;
-			collectible.localScale = scale;
+			collectible.localScale = new Vector3(scale, 0.1f, scale);
 			
 			collectible.RotateAround(Vector3.zero, Vector3.up, amountToAdd*i);
 			
