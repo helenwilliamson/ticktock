@@ -8,10 +8,11 @@ public class CogAnimator : MonoBehaviour {
 	public float amountToRotate;
 	
 	public GameObject ui;
+	public bool stopped = false;
 	
 	// Update is called once per frame
 	void Update () {
-		if (HaveStarted()) {
+		if (HaveStarted() && !stopped) {
 			// Used negative speed to rotate in opposite direction
 			if ((DateTime.Now.Millisecond / 100) % 5 == 0) {
 				cog.RotateAround(Vector3.zero, Vector3.up, amountToRotate);
@@ -23,4 +24,5 @@ public class CogAnimator : MonoBehaviour {
 		var component = ui.GetComponent<UI>();
 		return !component.showIntro;
 	}
+	
 }
