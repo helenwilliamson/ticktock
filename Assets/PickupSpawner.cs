@@ -21,9 +21,9 @@ public class PickupSpawner : MonoBehaviour {
 			collectible.localPosition = startingPosition;
 			
 			var scale = collectible.localScale;
-			scale.x = 0.003333333f;
-			scale.y = 2.5f;
-			scale.z = 0.003333333f;
+			scale.x = 0.05f;
+			scale.y = 0.1f;
+			scale.z = 0.05f;
 			collectible.localScale = scale;
 			
 			collectible.RotateAround(Vector3.zero, Vector3.up, amountToAdd*i);
