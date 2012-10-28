@@ -9,8 +9,8 @@ public class PickupSpawner : MonoBehaviour {
 	public float scale;
 	
 	void Start() {
-		
 		var amountToAdd = 360f / numberOfCollectibles;
+		var ratioAmountToAdd = amountToAdd*0.6f;
 		var initialPosition = transform.localPosition;
 		initialPosition.x = startingPosition.x;
 		initialPosition.y = startingPosition.y;
@@ -22,8 +22,7 @@ public class PickupSpawner : MonoBehaviour {
 			collectible.localPosition = startingPosition;
 			collectible.localScale = new Vector3(scale, 0.1f, scale);
 			
-			collectible.RotateAround(Vector3.zero, Vector3.up, amountToAdd*i);
-			
+			collectible.RotateAround(Vector3.zero, Vector3.up, (amountToAdd*i)+Random.Range(-ratioAmountToAdd, ratioAmountToAdd));
 		}
 	}
 }
