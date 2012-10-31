@@ -31,7 +31,7 @@ public class CharacterCollision : MonoBehaviour {
 	}
 	
 	IEnumerator showFinishScreen() {
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(2);
 		getUIScript().finished = true;
 	}
 	
