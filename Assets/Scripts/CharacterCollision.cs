@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CharacterCollision : MonoBehaviour {
 	
 	public GameObject ui;
+	public List<AudioClip> pickupSounds;
 
 	void OnCollisionEnter(Collision colidedWith) {
 		var tag = colidedWith.gameObject.tag;
@@ -18,7 +20,14 @@ public class CharacterCollision : MonoBehaviour {
 	void handlePickup(GameObject gameObject) {
 		Destroy(gameObject);
 		
+		playSound();
+		
 		getUIScript().numberCollected += 1;
+	}
+	
+	void playSound() {
+		var clip = pickupSounds[Random.Range(0, pickupSounds.Count)];
+		AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
 	}
 	
 	void handleObstacle() {
