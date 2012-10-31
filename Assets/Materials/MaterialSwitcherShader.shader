@@ -54,7 +54,7 @@ Shader "Custom/MaterialSwitcherShader" {
 
     } 
 
-    FallBack " Transparent/Diffuse", 1
+    FallBack " Diffuse", 1
 
 }
 
