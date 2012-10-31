@@ -13,7 +13,7 @@ public class CharacterCollision : MonoBehaviour {
 			handlePickup(colidedWith.gameObject);	
 		}
 		else if (tag == "obstacle") {
-			handleObstacle();	
+			//handleObstacle();	
 		}
 	}
 	
