@@ -13,7 +13,7 @@ public class CharacterCollision : MonoBehaviour {
 			handlePickup(colidedWith.gameObject);	
 		}
 		else if (tag == "obstacle") {
-			//handleObstacle();	
+			handleObstacle();	
 		}
 	}
 	
@@ -31,12 +31,11 @@ public class CharacterCollision : MonoBehaviour {
 	}
 	
 	void handleObstacle() {
-		var cogAnimators = gameObject.transform.parent.GetComponents<CogAnimator>();
-		foreach(CogAnimator cogAnimator in cogAnimators) {
-			cogAnimator.stopped = true;
-		}
+		var heart = GameObject.Find("Heart");
+		var changeHeartMaterial = heart.GetComponent<ChangeHeartMaterial>();
+		changeHeartMaterial.duration += 0.5f;
 		
-		StartCoroutine(showFinishScreen());
+		//StartCoroutine(showFinishScreen());
 	}
 	
 	IEnumerator showFinishScreen() {
