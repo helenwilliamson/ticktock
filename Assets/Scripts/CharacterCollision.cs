@@ -9,6 +9,7 @@ public class CharacterCollision : MonoBehaviour {
 
 	void OnCollisionEnter(Collision colidedWith) {
 		var tag = colidedWith.gameObject.tag;
+		Debug.Log("Collided with: " + colidedWith + " tagged: " + tag);
 		if (tag == "pickup") {
 			handlePickup(colidedWith.gameObject);	
 		}
