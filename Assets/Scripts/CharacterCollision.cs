@@ -29,7 +29,7 @@ public class CharacterCollision : MonoBehaviour {
 	
 	void playSound(List<AudioClip> sounds) {
 		var clip = sounds[Random.Range(0, sounds.Count)];
-		AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
+		AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, 0.5f);
 	}
 	
 	void handleObstacle() {
