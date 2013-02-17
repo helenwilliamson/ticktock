@@ -12,7 +12,7 @@ public class UI : MonoBehaviour {
 
 	void OnGUI () {
 		if (showIntro) {
-			GUI.Label(new Rect(50, 0,900,900), introScreen);
+			GUI.Label(new Rect(50, 0,800,800), introScreen);
 		
 			if (Event.current.type == EventType.KeyDown) {
         		showIntro = false;

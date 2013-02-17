@@ -6,6 +6,7 @@ public class CharacterCollision : MonoBehaviour {
 	
 	public GameObject ui;
 	public List<AudioClip> pickupSounds;
+	public List<AudioClip> obstacleSounds;
 
 	void OnCollisionEnter(Collision colidedWith) {
 		var tag = colidedWith.gameObject.tag;
@@ -21,13 +22,13 @@ public class CharacterCollision : MonoBehaviour {
 	void handlePickup(GameObject gameObject) {
 		Destroy(gameObject);
 		
-		playSound();
+		playSound(pickupSounds);
 		
 		getUIScript().numberCollected += 1;
 	}
 	
-	void playSound() {
-		var clip = pickupSounds[Random.Range(0, pickupSounds.Count)];
+	void playSound(List<AudioClip> sounds) {
+		var clip = sounds[Random.Range(0, sounds.Count)];
 		AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
 	}
 	
@@ -35,6 +36,8 @@ public class CharacterCollision : MonoBehaviour {
 		var heart = GameObject.Find("Heart");
 		var changeHeartMaterial = heart.GetComponent<ChangeHeartMaterial>();
 		changeHeartMaterial.duration += 0.5f;
+		
+		playSound(obstacleSounds);
 		
 		//StartCoroutine(showFinishScreen());
 	}
