@@ -1,0 +1,10 @@
+Library/
+Temp/
+
+Assembly-CSharp-vs.csproj
+Assembly-CSharp.csproj
+Assembly-CSharp.pidb
+
+ticktock-csharp.sln
+ticktock.sln
+ticktock.userprefs
