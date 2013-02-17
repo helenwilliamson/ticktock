@@ -35,7 +35,7 @@ public class CharacterCollision : MonoBehaviour {
 	void handleObstacle() {
 		var heart = GameObject.Find("Heart");
 		var changeHeartMaterial = heart.GetComponent<ChangeHeartMaterial>();
-		changeHeartMaterial.duration += 0.5f;
+		changeHeartMaterial.duration += 0.3f;
 		
 		playSound(obstacleSounds);
 		
