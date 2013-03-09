@@ -66,7 +66,6 @@ public class UI : MonoBehaviour {
 		water = 0;
 		
 		GUI.DrawTexture(new Rect(0, 0,960,600), creditsScreen);
-		StartCoroutine(pause(Status.Intro));
 	}
 	
 	IEnumerator pause(Status newStatus) {
