@@ -24,7 +24,7 @@ public class CharacterCollision : MonoBehaviour {
 		
 		playSound(pickupSounds);
 		
-		getUIScript().numberCollected += 1;
+		getUIScript().hitOil();
 	}
 	
 	void playSound(List<AudioClip> sounds) {
@@ -39,12 +39,7 @@ public class CharacterCollision : MonoBehaviour {
 		
 		playSound(obstacleSounds);
 		
-		//StartCoroutine(showFinishScreen());
-	}
-	
-	IEnumerator showFinishScreen() {
-		yield return new WaitForSeconds(2);
-		getUIScript().finished = true;
+		getUIScript().hitWater();
 	}
 	
 	private UI getUIScript() {

@@ -36,7 +36,7 @@ public class CogAnimator : MonoBehaviour {
 	
 	bool HaveStarted() {
 		var component = ui.GetComponent<UI>();
-		return !component.showIntro;
+		return component.started();
 	}
 	
 }
