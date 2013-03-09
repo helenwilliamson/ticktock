@@ -40,6 +40,20 @@ public class UI : MonoBehaviour {
 			
 		if (Event.current.type == EventType.KeyDown) {
 			status = Status.Playing;
+			
+			foreach (GameObject obstacle in GameObject.FindGameObjectsWithTag("obstacle")) {
+				Destroy(obstacle);
+			}
+			
+			foreach (GameObject pickup in GameObject.FindGameObjectsWithTag("pickup")) {
+				Destroy(pickup);
+			}
+			
+			foreach (GameObject cog in GameObject.FindGameObjectsWithTag("cog")) {
+				foreach (PickupSpawner spawner in cog.GetComponents<PickupSpawner>()) {
+					spawner.Spawn();	
+				}
+			}
 	    }
 	}
 
@@ -66,6 +80,7 @@ public class UI : MonoBehaviour {
 		water = 0;
 		
 		GUI.DrawTexture(new Rect(0, 0,960,600), creditsScreen);
+		StartCoroutine(pause(Status.Intro));
 	}
 	
 	IEnumerator pause(Status newStatus) {

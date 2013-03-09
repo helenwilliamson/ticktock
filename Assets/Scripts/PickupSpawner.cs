@@ -9,7 +9,9 @@ public class PickupSpawner : MonoBehaviour {
 	public Vector3 startingPosition;
 	public float scale;
 	
-	void Start() {
+	public void Spawn() {
+		Debug.Log("Spawning from " + transform.localPosition.ToString());
+		
 		var initialPosition = transform.localPosition;
 		initialPosition.x = startingPosition.x;
 		initialPosition.y = startingPosition.y;
