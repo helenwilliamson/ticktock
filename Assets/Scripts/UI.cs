@@ -11,14 +11,17 @@ public class UI : MonoBehaviour {
 	private int oil = 0;
 	private int water = 0;
 	
-	enum Status { Intro, Playing, Won, Lost, Credits };
+	enum Status { Reset, Intro, Playing, Won, Lost, Credits };
 	
-	private Status status = Status.Intro;
+	private Status status = Status.Reset;
 	
 	void OnGUI () {
 		switch (status) {
+			case Status.Reset:
+				resetAndShowIntro();
+				return;
 			case Status.Intro:
-				showIntro();
+				showIntroAndCheckIfReady();
 				return;
 			case Status.Playing:
 				showScore();
@@ -34,30 +37,47 @@ public class UI : MonoBehaviour {
 				return;
 		}
 	}
+	
+	void resetAndShowIntro() {
+		Debug.Log("Resetting");
+		showIntro();
+		
+		foreach (GameObject obstacle in GameObject.FindGameObjectsWithTag("obstacle")) {
+			Destroy(obstacle);
+		}
+		Debug.Log("Destroyed all obstacles");
+		
+		foreach (GameObject pickup in GameObject.FindGameObjectsWithTag("pickup")) {
+			Destroy(pickup);
+		}
+		Debug.Log("Destroyed all pickups");
+		
+		GameObject character = GameObject.FindGameObjectWithTag("character");
+		CharacterMov movement = character.GetComponent<CharacterMov>();
+		movement.MoveOffScreen();
+		Debug.Log("Moved character off screen");
+		
+		foreach (GameObject cog in GameObject.FindGameObjectsWithTag("cog")) {
+			foreach (PickupSpawner spawner in cog.GetComponents<PickupSpawner>()) {
+				spawner.Spawn();	
+			}
+		}
+		Debug.Log("Respawned pickups and obstacles");
+		movement.Reset();
+		Debug.Log("Moved character back on screen");
+		
+		status = Status.Intro;
+	}
 
 	void showIntro() {
 		GUI.DrawTexture(new Rect(0, 0,960,600), introScreen);
+	}
+	
+	void showIntroAndCheckIfReady() {
+		showIntro();
 			
 		if (Event.current.type == EventType.KeyDown) {
 			status = Status.Playing;
-			
-			foreach (GameObject obstacle in GameObject.FindGameObjectsWithTag("obstacle")) {
-				Destroy(obstacle);
-			}
-			
-			foreach (GameObject pickup in GameObject.FindGameObjectsWithTag("pickup")) {
-				Destroy(pickup);
-			}
-			
-			GameObject character = GameObject.FindGameObjectWithTag("character");
-			CharacterMov movement = character.GetComponent<CharacterMov>();
-			movement.Reset();
-			
-			foreach (GameObject cog in GameObject.FindGameObjectsWithTag("cog")) {
-				foreach (PickupSpawner spawner in cog.GetComponents<PickupSpawner>()) {
-					spawner.Spawn();	
-				}
-			}
 	    }
 	}
 
@@ -67,24 +87,21 @@ public class UI : MonoBehaviour {
 	}
 	
 	void showWinScreen() {
-		Debug.Log("Showing win");
 		GUI.DrawTexture(new Rect(0, 0,960,600), winScreen);
 		StartCoroutine(pause(Status.Credits));
 	}
 	
 	void showLoseScreen() {
-		Debug.Log("Showing lose");
 		GUI.DrawTexture(new Rect(0, 0,960,600), loseScreen);
 		StartCoroutine(pause(Status.Credits));
 	}
 	
 	void showCreditsScreen() {
-		Debug.Log("Showing credits");
 		oil = 0;
 		water = 0;
 		
 		GUI.DrawTexture(new Rect(0, 0,960,600), creditsScreen);
-		StartCoroutine(pause(Status.Intro));
+		StartCoroutine(pause(Status.Reset));
 	}
 	
 	IEnumerator pause(Status newStatus) {

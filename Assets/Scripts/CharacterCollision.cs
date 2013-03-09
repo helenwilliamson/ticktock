@@ -9,13 +9,15 @@ public class CharacterCollision : MonoBehaviour {
 	public List<AudioClip> obstacleSounds;
 
 	void OnCollisionEnter(Collision colidedWith) {
-		var tag = colidedWith.gameObject.tag;
-		Debug.Log("Collided with: " + colidedWith + " tagged: " + tag);
-		if (tag == "pickup") {
-			handlePickup(colidedWith.gameObject);	
-		}
-		else if (tag == "obstacle") {
-			handleObstacle();	
+		if (getUIScript().started()) {
+			var tag = colidedWith.gameObject.tag;
+			Debug.Log("Collided with: " + colidedWith + " tagged: " + tag);
+			if (tag == "pickup") {
+				handlePickup(colidedWith.gameObject);	
+			}
+			else if (tag == "obstacle") {
+				handleObstacle();	
+			}
 		}
 	}
 	

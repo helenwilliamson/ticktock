@@ -52,8 +52,13 @@ public class CharacterMov : MonoBehaviour {
 		return component.started();
 	}
 	
+	public void MoveOffScreen() {
+		var position = new Vector3(0f, 24.08691f, 380f);
+		gameObject.transform.position = position;
+	}
+	
 	public void Reset() {
-		var position = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 254f);
+		var position = new Vector3(0f, 24.08691f, 254f);
 		gameObject.transform.position = position;
 		
 		currentPosition = 0;
