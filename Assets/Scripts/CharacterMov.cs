@@ -13,7 +13,7 @@ public class CharacterMov : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		positions.Add(60f);
-		positions.Add(45f);
+		positions.Add(43f);
 	}
 	
 	// Update is called once per frame
@@ -50,6 +50,13 @@ public class CharacterMov : MonoBehaviour {
 	bool HaveStarted() {
 		var component = ui.GetComponent<UI>();
 		return component.started();
+	}
+	
+	public void Reset() {
+		var position = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 254f);
+		gameObject.transform.position = position;
+		
+		currentPosition = 0;
 	}
 	
 }

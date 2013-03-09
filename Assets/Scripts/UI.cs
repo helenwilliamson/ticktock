@@ -50,8 +50,8 @@ public class UI : MonoBehaviour {
 			}
 			
 			GameObject character = GameObject.FindGameObjectWithTag("character");
-			var position = new Vector3(character.transform.localPosition.x, character.transform.localPosition.y, 254f);
-			character.transform.position = position;
+			CharacterMov movement = character.GetComponent<CharacterMov>();
+			movement.Reset();
 			
 			foreach (GameObject cog in GameObject.FindGameObjectsWithTag("cog")) {
 				foreach (PickupSpawner spawner in cog.GetComponents<PickupSpawner>()) {
