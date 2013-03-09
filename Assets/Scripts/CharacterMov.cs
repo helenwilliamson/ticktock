@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class CharacterMov : MonoBehaviour {
 	
+	public GameObject ui;
+	
 	public Vector3 movVelocity;
 	private List<float> positions = new List<float>();
 	private int currentPosition = 0;
@@ -16,7 +18,7 @@ public class CharacterMov : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Vertical") && validKeyPress()) {
+		if (HaveStarted() && Input.GetButtonDown ("Vertical") && validKeyPress()) {
 			var amountToMove = 0f;
 			if (Input.GetKey("down")) {
 				amountToMove = -positions[currentPosition];
@@ -43,6 +45,11 @@ public class CharacterMov : MonoBehaviour {
 			return false;
 		}
 		return true;
+	}
+	
+	bool HaveStarted() {
+		var component = ui.GetComponent<UI>();
+		return component.started();
 	}
 	
 }
