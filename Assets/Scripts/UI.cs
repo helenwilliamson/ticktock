@@ -49,6 +49,10 @@ public class UI : MonoBehaviour {
 				Destroy(pickup);
 			}
 			
+			GameObject character = GameObject.FindGameObjectWithTag("character");
+			var position = new Vector3(character.transform.localPosition.x, character.transform.localPosition.y, 254f);
+			character.transform.position = position;
+			
 			foreach (GameObject cog in GameObject.FindGameObjectsWithTag("cog")) {
 				foreach (PickupSpawner spawner in cog.GetComponents<PickupSpawner>()) {
 					spawner.Spawn();	
