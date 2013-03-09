@@ -2,10 +2,8 @@ Library/
 Temp/
 Builds/
 
-Assembly-CSharp-vs.csproj
-Assembly-CSharp.csproj
-Assembly-CSharp.pidb
+*.csproj
+*.pidb
 
-ticktock-csharp.sln
-ticktock.sln
-ticktock.userprefs
+*.sln
+*.userprefs
